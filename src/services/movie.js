@@ -1,4 +1,4 @@
-import {getApiUrl} from "./api";
+import { getApiUrl } from "./api";
 
 export function searchMovie(searchText, page) {
     return fetch(
@@ -24,10 +24,10 @@ export function getMovie(id) {
     ).then(result => result.json())
 }
 
-export function getTopRated() {
+export function getGenres() {
     return fetch(
         getApiUrl(
-            `/movie/top_rated`,
+            `/genre/movie/list`,
             {
                 language: 'fr-FR',
             }
