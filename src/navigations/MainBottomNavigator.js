@@ -8,8 +8,8 @@ const TabNavigator = createBottomTabNavigator();
 export const MainBottomNavigator = () => {
     return (
         <TabNavigator.Navigator>
-            <TabNavigator.Screen name="TopRated" component={TopRatedScreen} />
-            <TabNavigator.Screen name="Search" component={SearchAndDetailNavigator} />
+            <TabNavigator.Screen name="Accueil" component={TopRatedScreen} />
+            <TabNavigator.Screen name="Recherche" component={SearchAndDetailNavigator} />
         </TabNavigator.Navigator>
     )
 }
