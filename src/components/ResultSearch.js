@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import { color } from 'react-native-reanimated';
 
 export const ResultSearch = (props) => {
     const {textSearched} = props;
@@ -18,6 +19,7 @@ const styles = StyleSheet.create({
     },
     textSearched: {
         fontWeight: 'bold',
-        fontSize: 18
+        fontSize: 18,
+        color: '#B5A90F'
     }
 })
