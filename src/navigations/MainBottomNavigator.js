@@ -1,7 +1,7 @@
 import React from 'react';
-import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
-import {SearchAndDetailNavigator} from "./SearchAndDetailNavigator";
-import {TopRatedScreen} from "../screens/TopRatedScreen";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { SearchAndDetailNavigator } from "./SearchAndDetailNavigator";
+import TopRatedScreen from "../screens/TopRatedScreen";
 
 const TabNavigator = createBottomTabNavigator();
 
