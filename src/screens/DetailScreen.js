@@ -52,10 +52,14 @@ export const DetailScreen = (props) => {
                             style={styles.image}
                         />
                         <View style={styles.headerInfo}>
-                            <Image source={require('../../assets/images/button_play.png')} style={styles.imagePlay} />
-                            {movie.title !== '' && <Text style={styles.title}>{movie.title}</Text>}
-                            {movie.production_companies.length > 0 && <Text style={styles.director}>{movie.production_companies[0].name}</Text>}
-                            {movie.vote_average !== '' && <Text style={[styles.averageNote, movie.vote_average > 5 ? styles.good_film : styles.bad_film]}>{movie.vote_average}</Text>}
+                            <View style={styles.headerInfoText}>
+                                {movie.title !== '' && <Text style={styles.title}>{movie.title}</Text>}
+                                {movie.production_companies.length > 0 && <Text style={styles.director}>{movie.production_companies[0].name}</Text>}
+                                {movie.vote_average !== '' && <Text style={styles.time}>{movie.runtime} min</Text>}
+                            </View>
+                            <View>
+                                <Image source={require('../../assets/images/button_play.png')} style={styles.imagePlay} />
+                            </View>
                         </View>
                     </View>
                     <Text style={styles.overviewTitle}>Synopsis</Text>
@@ -64,7 +68,7 @@ export const DetailScreen = (props) => {
             </ScrollView>
             {movie.homepage !== '' && (
                 <View style={styles.footer}>
-                <Button color="#fc6e58" onPress={handlePress} title="Visit website" />
+                <Button color="#B00020" onPress={handlePress} title="Trailer" />
                 </View>
             )}
         </View>
@@ -73,12 +77,10 @@ export const DetailScreen = (props) => {
 
 const styles = StyleSheet.create({
     page: {
-        backgroundColor: "#ffffff",
+        backgroundColor: "#F4F4F4",
         flex: 1,
     },
     imageBg: {
-        borderBottomLeftRadius: 15,
-        borderBottomRightRadius: 15,
         height: 350,
         resizeMode: 'cover',
         width: "100%",
@@ -87,18 +89,33 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "row",
         marginBottom: 36,
+        alignItems: 'center'
     },
     headerInfo: {
         display: "flex",
-        flexDirection: "column",
+        flexDirection: "row",
+        justifyContent: 'space-between',
         flex: 1,
     },
+    title: {
+        color: "#B5A90F",
+        fontWeight: 'bold',
+    },
+    headerInfoText: {
+        backgroundColor: "#FFFFFF",
+        borderRadius: 15,
+        borderWidth: 4,
+        padding: 4,
+        borderColor: "#FFFFFF",
+        flexWrap: "wrap",
+        width: 220
+    },
     image: {
-        borderColor: "#ffffff",
+        borderColor: "#FFFFFF",
         borderRadius: 15,
         borderWidth: 4,
         height: 134,
-        marginRight: 15,
+        marginRight: 8,
         width: 84,
     },
     imagePlay: {
@@ -110,6 +127,7 @@ const styles = StyleSheet.create({
         fontSize: 13,
         fontWeight: "100",
         marginBottom: 10,
+        color: "#B5A90F"
     },
     movie: {
         display: "flex",
@@ -117,11 +135,11 @@ const styles = StyleSheet.create({
         paddingBottom: 120,
         paddingLeft: 18,
         paddingRight: 18,
-        top: -35,
+        top: -60,
         zIndex: 1,
     },
-    averageNote: {
-        fontWeight: 'bold'
+    time: {
+        color :"#B5A90F"
     },
     good_film: {
         color: 'green'
@@ -131,14 +149,15 @@ const styles = StyleSheet.create({
     },
     overview: {
         lineHeight: 24,
+        color: "#B5A90F"
     },
     overviewTitle: {
-        fontSize: 14,
-        fontWeight: "600",
-        marginBottom: 10,
+        fontSize: 16,
+        fontWeight: "bold",
+        marginBottom: 16,
+        color: "#B5A90F"
     },
     footer: {
-        backgroundColor: "#ffffff",
         bottom: 0,
         left: 0,
         paddingBottom: 12,
