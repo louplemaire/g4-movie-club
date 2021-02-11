@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, View, StyleSheet, Text, FlatList, ActivityIndicator} from "react-native";
+import {SafeAreaView, View, StyleSheet, Text, FlatList, ActivityIndicator, Image} from "react-native";
 import {Search} from "../components/Search";
 import {ResultSearch} from "../components/ResultSearch";
 import {FilmItem} from "../components/FilmItem";
@@ -60,7 +60,12 @@ export default class SearchScreen extends React.Component {
             </View>
         }
 
-        return <View style={styles.no_found_container}><Text style={styles.text_no_result}>Aucune recherche effectuée</Text></View>
+        return (
+            <View style={styles.no_found_container}>
+                <Image source={require('../../assets/images/bad.png')} style={styles.logo}/>
+                <Text style={styles.text_no_result}>Aucune recherche effectuée</Text>
+            </View>
+        )
     }
 
     render() {
@@ -101,6 +106,11 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    logo: {
+        width: 100,
+        height: 100,
+        marginBottom: 16,
     },
     loading_container: {
         bottom: 300
