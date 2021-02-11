@@ -1,16 +1,16 @@
 import React from 'react';
-import {SafeAreaView, View, StyleSheet, Text, FlatList, ActivityIndicator, Image} from "react-native";
-import {Search} from "../components/Search";
-import {ResultSearch} from "../components/ResultSearch";
-import {FilmItem} from "../components/FilmItem";
-import {searchMovie} from "../services/movie";
+import { SafeAreaView, View, StyleSheet, Text, FlatList, ActivityIndicator, Image } from "react-native";
+import { Search } from "../components/Search";
+import { ResultSearch } from "../components/ResultSearch";
+import { FilmItem } from "../components/FilmItem";
+import { searchMovie } from "../services/movie";
 
 export default class SearchScreen extends React.Component {
     state = {
         searchText: '',
         filmsState: [],
         isLoading: false,
-     }
+    }
     page;
     totalPages;
 
@@ -21,25 +21,24 @@ export default class SearchScreen extends React.Component {
     }
 
     _searchFilms = () => {
-        //Permet de réinitialiser le state entre deux recherches différentes
         this.page = 0;
         this.totalPages = 0;
-        this.setState({filmsState: []});
+        this.setState({ filmsState: [] });
 
         this._loadFilms();
     }
 
     handleSearchText = (text) => {
-        this.setState({searchText: text})
+        this.setState({ searchText: text })
     }
 
     _loadFilms = () => {
-        this.setState({isLoading: true})
+        this.setState({ isLoading: true })
         searchMovie(this.state.searchText, this.page + 1)
             .then(data => {
                 this.page = data.page;
                 this.totalPages = data.total_pages;
-                this.setState({filmsState: [...this.state.filmsState, ...data.results], isLoading: false});
+                this.setState({ filmsState: [...this.state.filmsState, ...data.results], isLoading: false });
             })
     }
 
@@ -48,7 +47,7 @@ export default class SearchScreen extends React.Component {
             return <View>
                 <FlatList
                     data={this.state.filmsState}
-                    renderItem={({item}) => <FilmItem film={item} goToDetail={() => this.props.navigation.navigate('Detail', {title: item.title, id: item.id})} />}
+                    renderItem={({ item }) => <FilmItem film={item} goToDetail={() => this.props.navigation.navigate('Detail', { title: item.title, id: item.id })} />}
                     keyExtractor={item => item.id.toString()}
                     onEndReachedThreshold={0.5}
                     onEndReached={() => {
@@ -62,19 +61,19 @@ export default class SearchScreen extends React.Component {
 
         return (
             <View style={styles.no_found_container}>
-                <Image source={require('../../assets/images/bad.png')} style={styles.logo}/>
+                <Image source={require('../../assets/images/bad.png')} style={styles.logo} />
                 <Text style={styles.text_no_result}>Aucune recherche effectuée</Text>
             </View>
         )
     }
 
     render() {
-        const {searchText} = this.state;
+        const { searchText } = this.state;
         return (
             <SafeAreaView style={styles.main_container}>
-                <Search handleSearch={this.handleSearchText} handleClickButton={this._searchFilms}/>
-                {this.state.searchText !== '' ? <ResultSearch textSearched={searchText}/> : null}
-                    {this._renderResult()}
+                <Search handleSearch={this.handleSearchText} handleClickButton={this._searchFilms} />
+                {this.state.searchText !== '' ? <ResultSearch textSearched={searchText} /> : null}
+                {this._renderResult()}
                 { this.state.isLoading ?
                     <View style={styles.loading_container}>
                         <ActivityIndicator size='large' color={'#000'} />
