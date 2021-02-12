@@ -1,4 +1,4 @@
-# 🎬 Club Movie
+# 🎬 Club Movie - 📱 Mobile App in React Native
 
 ## 🎯 Features
 - Choose a movie by genre (does not work)
