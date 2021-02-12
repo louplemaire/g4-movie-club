@@ -1,4 +1,4 @@
-# 🎬 Club Movie
+# 🎬 Movie Club
 📱 Mobile App in React Native
 
 ## 🎯 Features
